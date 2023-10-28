@@ -1,6 +1,8 @@
+/* eslint-disable default-case */
 import { useReducer } from 'react';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
+import CounterWrapper from './CounterWrapper';
 
 function reducer(todos, action) {
   switch (action.type) {
@@ -33,7 +35,7 @@ function TodoWrapper() {
   const [todos, dispatch] = useReducer(reducer, [
     {
       id: Math.random().toString(),
-      text: 'Read a PMBOK',
+      text: 'Read a Clean Code React',
       isCompleted: false,
       isEditing: false,
     },
@@ -78,6 +80,7 @@ function TodoWrapper() {
           />
         )
       )}
+    <CounterWrapper />
     </div>
   );
 }
