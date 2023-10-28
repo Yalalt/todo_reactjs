@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 
 /**
  * @component
@@ -13,6 +14,7 @@ function TodoForm(props) {
      */
   const { todo, saveTodo } = props;
   const [value, setValue] = useState(todo?.text || '');
+  const inputRef = useRef(null);
 
   /** if todo has value then to call edit function
    * else to call add function and pass parameter value
@@ -34,9 +36,14 @@ function TodoForm(props) {
     }
   };
 
+  useEffect(() => {
+    inputRef.current.defaultValue = "Ажлын даалгавар оруулна уу";
+    inputRef.current.focus();
+  }, []);
+
   return (
     <form onSubmit={onSubmit} className='TodoForm'>
-      <input type='text' className='todo-input' value={value} onChange={(e) => setValue(e.target.value)} />
+      <input type='text' className='todo-input' ref={inputRef} value={value} onChange={(e) => setValue(e.target.value)} />
       <button type='submit' className='todo-btn'>
         Хадгалах
       </button>
